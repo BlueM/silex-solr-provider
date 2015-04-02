@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/BlueM/silex-solr-provider.svg)](https://travis-ci.org/BlueM/silex-solr-provider)
+
 Overview
 ========
 
@@ -63,7 +65,7 @@ $app['mysolr']->getOptions();
 Version History
 =================
 
-Nothing yet
+* 1.0: Works
 
 
 Author & License
