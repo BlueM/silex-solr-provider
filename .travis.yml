@@ -7,4 +7,5 @@ php:
   - hhvm
 
 before_script:
+  - pecl install -f solr-2.0.0
   - composer install --prefer-source
