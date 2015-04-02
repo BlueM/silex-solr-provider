@@ -70,10 +70,10 @@ class SolrServiceProviderTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $valueMap = [
-            ['solr.port', '1.2.3.4'],
-            ['solr.timeout', 4711],
-        ];
+        $valueMap = array(
+            array('solr.port', '1.2.3.4'),
+            array('solr.timeout', 4711),
+        );
 
         $appStub->expects($this->exactly(17))
             ->method('offsetExists')
@@ -85,6 +85,6 @@ class SolrServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $options = $method->invoke($subject, $appStub);
 
-        $this->assertSame(['port' => '1.2.3.4', 'timeout' => 4711], $options);
+        $this->assertSame(array('port' => '1.2.3.4', 'timeout' => 4711), $options);
     }
 }
