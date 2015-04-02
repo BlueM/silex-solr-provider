@@ -2,8 +2,6 @@
 
 namespace BlueM\Silex\Provider;
 
-use BlueM\Validation\I18n\De;
-use BlueM\Validation\Validator;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -55,46 +53,57 @@ class SolrServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
-        $prefix = $this->prefix;
+        $that = $this;
 
-        $app['solr'] = $app->share(
-            function ($app) use ($prefix) {
-
-                $optionKeys = [
-                    'hostname',
-                    'login',
-                    'password',
-                    'path',
-                    'port',
-                    'proxy_host',
-                    'proxy_login',
-                    'proxy_password',
-                    'proxy_port',
-                    'secure',
-                    'ssl_cainfo',
-                    'ssl_capath',
-                    'ssl_cert',
-                    'ssl_key',
-                    'ssl_keypassword',
-                    'timeout',
-                    'wt',
-                ];
-
-                $options = [];
-
-                foreach ($optionKeys as $key) {
-                    if (isset($app["$prefix.$key"])) {
-                        $options[$key] = $app["$prefix.$key"];
-                    }
-                }
-
-                if (!count($options)) {
-                    throw new \RuntimeException('No Solr options are defined');
-                }
-
-                return new \SolrClient($options);
+        $app[$this->prefix] = $app->share(
+            function ($app) use ($that) {
+                return new \SolrClient($that->getOptions($app));
             }
         );
+    }
+
+    /**
+     * @param Application $app
+     *
+     * @return \SolrClient
+     */
+    private function getOptions(Application $app)
+    {
+        $prefix = $this->prefix;
+
+        $optionKeys = array(
+            'hostname',
+            'login',
+            'password',
+            'path',
+            'port',
+            'proxy_host',
+            'proxy_login',
+            'proxy_password',
+            'proxy_port',
+            'secure',
+            'ssl_cainfo',
+            'ssl_capath',
+            'ssl_cert',
+            'ssl_key',
+            'ssl_keypassword',
+            'timeout',
+            'wt',
+        );
+
+        $options = array();
+
+        foreach ($optionKeys as $key) {
+            if (isset($app["$prefix.$key"])) {
+                $options[$key] = $app["$prefix.$key"];
+            }
+        }
+
+        if (!count($options)) {
+            throw new \RuntimeException('No Solr options are defined');
+        }
+
+        return $options;
     }
 
     /**
