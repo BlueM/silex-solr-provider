@@ -1,0 +1,22 @@
+{
+    "name": "bluem/silex-solr-provider",
+    "type": "library",
+    "description": "Provides Apache Solr 4.* connectivity for Silex, Solr extension v2",
+    "keywords": ["search", "solr", "silex"],
+    "homepage": "https://github.com/BlueM/silex-solr-provider",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Carsten Blüm",
+            "email": "carsten@bluem.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-solr": "~2.0",
+        "silex/silex": "~1.2"
+    },
+    "autoload": {
+        "psr-0": {"BlueM\\Silex\\Provider\\SolrServiceProvider": "src/"}
+    }
+}
