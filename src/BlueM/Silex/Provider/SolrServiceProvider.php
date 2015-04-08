@@ -2,8 +2,8 @@
 
 namespace BlueM\Silex\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\ServiceProviderInterface;
+use Pimple\Container;
 
 /**
  * Provides access to Solr via ext/solr 2
@@ -51,23 +51,21 @@ class SolrServiceProvider implements ServiceProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function register(Application $app)
+    public function register(Container $pimple)
     {
         $that = $this;
 
-        $app[$this->prefix] = $app->share(
-            function ($app) use ($that) {
-                return new \SolrClient($that->getOptions($app));
-            }
-        );
+        $app[$this->prefix] = function ($pimple) use ($that) {
+            return new \SolrClient($that->getOptions($pimple));
+        };
     }
 
     /**
-     * @param Application $app
+     * @param Container $pimple
      *
      * @return array
      */
-    private function getOptions(Application $app)
+    private function getOptions(Container $pimple)
     {
         $prefix = $this->prefix;
 
@@ -94,8 +92,8 @@ class SolrServiceProvider implements ServiceProviderInterface
         $options = array();
 
         foreach ($optionKeys as $key) {
-            if (isset($app["$prefix.$key"])) {
-                $options[$key] = $app["$prefix.$key"];
+            if (isset($pimple["$prefix.$key"])) {
+                $options[$key] = $pimple["$prefix.$key"];
             }
         }
 
@@ -104,13 +102,5 @@ class SolrServiceProvider implements ServiceProviderInterface
         }
 
         return $options;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function boot(Application $app)
-    {
-
     }
 }

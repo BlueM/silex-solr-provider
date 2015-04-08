@@ -14,9 +14,14 @@
     "require": {
         "php": ">=5.3.0",
         "ext-solr": "~2.0",
-        "silex/silex": "~1.2"
+        "silex/silex": "~2.0@dev"
     },
     "autoload": {
         "psr-0": {"BlueM\\Silex\\Provider\\SolrServiceProvider": "src/"}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
+        }
     }
 }

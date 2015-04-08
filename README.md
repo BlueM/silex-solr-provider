@@ -9,9 +9,9 @@ This repository contais a [Silex](https://github.com/silexphp/Silex) service pro
 
 Installation
 -------------
-The preferred way to install Tree is through [Composer](https://getcomposer.org). For this, add `"bluem/silex-solr-provider": "~1.0"` to the requirements in your composer.json file. As this library uses [semantic versioning](http://semver.org), you will get fixes and feature additions when running composer update, but not changes which break the API.
+The preferred way to install this library is through [Composer](https://getcomposer.org). For this, add `"bluem/silex-solr-provider": "~1.0"` (for Silex 1.2+) or `"bluem/silex-solr-provider": "~2.0@dev"` (for Silex2@dev) respectively to the requirements in your `composer.json` file. As this library uses [semantic versioning](http://semver.org), you will get fixes and feature additions when running composer update, but not changes which break the API.
 
-Alternatively, you can clone the repository using git or download a tagged release.
+Alternatively, you can clone the repository using git or download a tagged release. As with the Composer-based installation, you have to pay attention to the Silex version: when using Silex 1.2+, you will need a 1.* release of the service provider, and for Silex 2, you will need dev-master.
 
 
 Usage
