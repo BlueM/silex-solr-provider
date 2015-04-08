@@ -35,7 +35,7 @@ $app['solr.hostname'] = '127.0.0.1';
 $app['solr.path']     = 'solr/core0';
 ```
 
-You can use all options that the `SolrClient` class constructor accepts. For a list, see http://php.net/manual/en/solrclient.construct.php. Please note that `SolrClient` does not accept an empty options array, wich means you have to provide at least 1 option, otherwise you will get an exception.
+You can use all options which the `SolrClient` class constructor accepts. For a list, see http://php.net/manual/en/solrclient.construct.php. Please note that `SolrClient` does not accept an empty options array, wich means you have to provide at least 1 option, otherwise you will get an exception.
 
 Another (IMHO less recommendable way) is to pass the options as 2nd argument to `Silex\Application` when registering the provider:
 
@@ -46,17 +46,22 @@ $app->register(
 );
 ```
 
-In either case, you can use a different string (instead of “solr”) as configuration key prefix by passing this string as argument to the provider’s constructor:
+In either case, you can use a different string (instead of “solr”) as configuration key prefix by passing this string as argument to the provider’s constructor. This comes also in handy when multiple cores are needed:
 
 ```php
 // In app.php:
-$app->register(new BlueM\Silex\Provider\SolrServiceProvider('mysolr'));
+$app->register(new BlueM\Silex\Provider\SolrServiceProvider('solr-core0'));
+$app->register(new BlueM\Silex\Provider\SolrServiceProvider('solr-core1'));
 
 // In config/prod.php:
-$app['mysolr.hostname'] = '127.0.0.1';
+$app['solr-core0.hostname'] = '127.0.0.1';
+$app['solr-core0.path']     = 'solr/core0';
+$app['solr-core1.hostname'] = '127.0.0.1';
+$app['solr-core1.path']     = 'solr/core1';
 
 // In your project code:
-$app['mysolr']->getOptions();
+$app['solr-core0']->doSomethingWithCore0();
+$app['solr-core1']->doSomethingWithCore1();
 ```
 
 
