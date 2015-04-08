@@ -65,7 +65,7 @@ class SolrServiceProvider implements ServiceProviderInterface
     /**
      * @param Application $app
      *
-     * @return \SolrClient
+     * @return array
      */
     private function getOptions(Application $app)
     {
