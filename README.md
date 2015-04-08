@@ -70,6 +70,7 @@ $app['solr-core1']->doSomethingWithCore1();
 Version History
 =================
 
+* 1.0.1: Improve Readme, fix a doc comment
 * 1.0: Works
 
 
