@@ -1,9 +1,11 @@
+[![Build Status](https://travis-ci.org/BlueM/silex-solr-provider.svg)](https://travis-ci.org/BlueM/silex-solr-provider)
+
 Overview
 ========
 
 What is it?
 --------------
-This repository contais a Silex service provider which provides Apache Solr 4.* connectivity for Silex 1.2+, via the PHP Solr extension v2.
+This repository contais a [Silex](https://github.com/silexphp/Silex) service provider which provides [Apache Solr](http://lucene.apache.org/solr/) 4.* connectivity for Silex 1.2+, via the [PHP Solr extension](http://php.net/solr) v2.
 
 Installation
 -------------
@@ -68,7 +70,7 @@ $app['solr-core1']->doSomethingWithCore1();
 Version History
 =================
 
-Nothing yet
+* 1.0: Works
 
 
 Author & License
