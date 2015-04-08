@@ -55,7 +55,7 @@ class SolrServiceProvider implements ServiceProviderInterface
     {
         $that = $this;
 
-        $app[$this->prefix] = function ($pimple) use ($that) {
+        $pimple[$this->prefix] = function ($pimple) use ($that) {
             return new \SolrClient($that->getOptions($pimple));
         };
     }
