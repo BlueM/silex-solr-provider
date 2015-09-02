@@ -17,28 +17,28 @@ require_once __DIR__.'/../../../../src/BlueM/Silex/Provider/SolrServiceProvider.
  */
 class SolrServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
-	/**
-	 * @test
+    /**
+     * @test
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage non-empty string
-	 */
-	public function thePrefixMustNotBeEmpty()
-	{
+     */
+    public function thePrefixMustNotBeEmpty()
+    {
         new SolrServiceProvider('');
-	}
+    }
 
-	/**
-	 * @test
-	 */
-	public function thePrefixPassedAsArgumentIsSaved()
-	{
+    /**
+     * @test
+     */
+    public function thePrefixPassedAsArgumentIsSaved()
+    {
         $subject = new SolrServiceProvider('myprefix');
 
         $prefixProperty = new \ReflectionProperty($subject, 'prefix');
         $prefixProperty->setAccessible(true);
 
         $this->assertSame('myprefix', $prefixProperty->getValue($subject));
-	}
+    }
 
     /**
      * @test
