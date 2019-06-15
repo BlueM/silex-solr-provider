@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/BlueM/silex-solr-provider.svg)](https://travis-ci.org/BlueM/silex-solr-provider)
 
+**As Silex is discontinued, so is this project. It will not receive udpates or fixes.**
+
 Overview
 ========
 
